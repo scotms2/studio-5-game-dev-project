@@ -4,29 +4,54 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject objectToBeSpawned;
+    public bool canSpawn = true;
 
-    [SerializeField] private int numberOfItems;
+    public GameObject enemyPrefab;
 
-    [SerializeField] private float spawnTime;
+    public List<Transform> enemySpawnPositions = new List<Transform>();
 
-    [SerializeField] private float spawnDelay;
+    public float timeBetweenSpawns;
 
-    [SerializeField] private bool stopSpawning;
+    private List<GameObject> enemyList = new List<GameObject>();
 
     void Start()
     {
-        InvokeRepeating("Spawn", spawnTime, spawnDelay);
+        StartCoroutine(SpawnRoutine());
     }
 
-    public void Spawn()
+
+    private void SpawnEnemey()
     {
-        for (int i = 0; i < numberOfItems; i++)
+        Vector3 randomPosition = enemySpawnPositions[Random.Range(0, enemySpawnPositions.Count)].position;
+
+        GameObject enemy = Instantiate(enemyPrefab, randomPosition, enemyPrefab.transform.rotation);
+
+        enemyList.Add(enemy);
+
+        enemy.GetComponent<Enemy>().SetSpawner(this);
+    }
+
+    private IEnumerator SpawnRoutine()
+    {
+        while(canSpawn)
         {
-            Instantiate(objectToBeSpawned, transform.position, transform.rotation);
-            if(stopSpawning) {
-                CancelInvoke("Spawn");
-            }
+            SpawnEnemey();
+            yield return new WaitForSeconds(timeBetweenSpawns);
         }
+    }
+
+    public void RemoveEnemiesFromList(GameObject enemy)
+    {
+        enemyList.Remove(enemy);
+    }
+
+    public void DestroyAllEnemies()
+    {
+        foreach (GameObject enemy in enemyList)
+        {
+            Destroy(enemy);
+        }
+
+        enemyList.Clear();
     }
 }
