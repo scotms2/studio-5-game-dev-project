@@ -34,4 +34,9 @@ public class Enemy : MonoBehaviour
     {
         enemySpawner = spawner;
     }
+
+    void OnMouseDown()
+    {
+        Destroy(gameObject);
+    }
 }
