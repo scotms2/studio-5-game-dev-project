@@ -539,12 +539,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSpawn: 1
-  enemyPrefab: {fileID: 5627564755787908551, guid: 30cc23ece6291d948a13db8389d5035a, type: 3}
+  enemyPrefab: {fileID: 8802141247121413027, guid: 23fc2cad8baeff6459dbf4d639e376d9, type: 3}
   enemySpawnPositions:
   - {fileID: 426958907}
   - {fileID: 179922326}
   - {fileID: 1153734603}
-  timeBetweenSpawns: 2
+  timeBetweenSpawns: 3
 --- !u!4 &1116114719
 Transform:
   m_ObjectHideFlags: 0
