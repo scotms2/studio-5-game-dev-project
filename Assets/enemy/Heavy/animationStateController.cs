@@ -5,26 +5,41 @@ using UnityEngine;
 public class animationStateController : MonoBehaviour
 {
     Animator animator;
+    public GameObject player;
+    int MinDist = 5;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        player = GameObject.FindWithTag("Player");
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isPunch", false);
+        animator.SetBool("isDeath", false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("1"))
+
+        transform.LookAt(player.transform.position);
+
+        if (Vector3.Distance(transform.position, player.transform.position) >= MinDist)
         {
+            animator.SetBool("isPunch", false);
             animator.SetBool("isWalking", true);
         }
-        if (Input.GetKey("2"))
+        else
         {
-            animator.SetBool("ispunch", true);
+            animator.SetBool("isPunch", true);
         }
-        if (Input.GetKey("3"))
-        {
-            animator.SetBool("isDeath", true);
-        }
+
     }
+
+    void OnMouseDown()
+    {
+        animator.SetBool("isDeath", true);
+        Destroy(gameObject);
+    }
+
 }

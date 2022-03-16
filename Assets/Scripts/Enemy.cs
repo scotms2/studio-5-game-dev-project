@@ -35,8 +35,8 @@ public class Enemy : MonoBehaviour
         enemySpawner = spawner;
     }
 
-    void OnMouseDown()
-    {
-        Destroy(gameObject);
-    }
+    //void OnMouseDown()
+    //{
+    //    Destroy(gameObject);
+    //}
 }
