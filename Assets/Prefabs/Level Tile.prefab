@@ -133,7 +133,7 @@ MonoBehaviour:
   tileRenderer: {fileID: 2155894110615383516}
   meshFilter: {fileID: 2155894110615383519}
   meshCollider: {fileID: 2155894110615383517}
-  heightMultiplier: 5
+  heightMultiplier: 25
   heightCurve:
     serializedVersion: 2
     m_Curve:
@@ -167,4 +167,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  mapScale: 10
+  mapScale: 50
+  waves:
+  - seed: 5613
+    frequency: 1
+    amplitude: 1
+  - seed: 6712
+    frequency: 0.85
+    amplitude: 4

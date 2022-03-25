@@ -8,9 +8,16 @@ using UnityEngine;
     *NOTE TO SELF: [,] makes a 2d array, [,,] makes a 3d array
 */
 
+[System.Serializable]
+public class Wave {
+    public float seed;
+    public float frequency;
+    public float amplitude;
+}
+
 public class NoiseMapGeneration : MonoBehaviour
 {
-    public float[,] GenerateNoiseMap(int mapDepth, int mapWidth, float scale, float offsetX, float offsetZ)
+    public float[,] GenerateNoiseMap(int mapDepth, int mapWidth, float scale, float offsetX, float offsetZ, Wave[] waves)
     {
         float[,] noiseMap = new float[mapDepth, mapWidth]; //Create empty noise map with depth and width
 
@@ -22,8 +29,17 @@ public class NoiseMapGeneration : MonoBehaviour
                 float sampleX = (x + offsetX) / scale;
                 float smapleZ = (z + offsetZ) / scale;
 
-                //Generate noise value
-                float noise = Mathf.PerlinNoise(sampleX, smapleZ);
+                float noise = 0f;
+                float normalization = 0f;
+                foreach(Wave wave in waves)
+                {
+                    // generate noise value using PerlinNoise for a given Wave
+                    noise += wave.amplitude * Mathf.PerlinNoise(sampleX * wave.frequency + wave.seed, smapleZ * wave.frequency + wave.seed);
+                    normalization += wave.amplitude;
+                }
+
+                // normalize the noise value so that it is within 0 and 1
+                noise /= normalization;
 
                 noiseMap [z, x] = noise;
             }

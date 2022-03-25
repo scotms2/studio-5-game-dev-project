@@ -12,6 +12,8 @@ public class LevelGeneration : MonoBehaviour
 
     [SerializeField] private GameObject tilePrefab;
 
+    [SerializeField] private Transform parent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,7 @@ public class LevelGeneration : MonoBehaviour
                 
                 //Instantiate the Tile
                 GameObject tile = Instantiate(tilePrefab, tilePos, Quaternion.identity) as GameObject;
+                tile.transform.SetParent(parent);
             }
         }
     }

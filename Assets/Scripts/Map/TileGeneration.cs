@@ -33,6 +33,7 @@ public class TileGeneration : MonoBehaviour
 
     [SerializeField] private float mapScale;
 
+    [SerializeField] private Wave[] waves;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +53,7 @@ public class TileGeneration : MonoBehaviour
         float offsetZ = -this.gameObject.transform.position.z;
 
         //Calculate offset based on tile position
-        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ);
+        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ, waves);
 
         //Generate heightMap
         Texture2D tileTexture = BuildTexture(heightMap);
