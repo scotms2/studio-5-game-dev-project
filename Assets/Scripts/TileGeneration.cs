@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    *Link to guide that helped me through this: https://gamedevacademy.org/complete-guide-to-procedural-level-generation-in-unity-part-1/
+
+    *NOTE TO SELF: [,] makes a 2d array, [,,] makes a 3d array
+*/
+
 [System.Serializable]
 public class TerrainType {
     public string name;
@@ -23,6 +29,8 @@ public class TileGeneration : MonoBehaviour
 
     [SerializeField] private float heightMultiplier;
 
+    [SerializeField] private AnimationCurve heightCurve;
+
     [SerializeField] private float mapScale;
 
 
@@ -39,13 +47,18 @@ public class TileGeneration : MonoBehaviour
         int tileDepth = (int)Mathf.Sqrt(meshVertices.Length);
         int tileWidth = tileDepth;
 
+        //Calculate the offsets based on tile position
+        float offsetX = -this.gameObject.transform.position.x;
+        float offsetZ = -this.gameObject.transform.position.z;
+
         //Calculate offset based on tile position
-        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale);
+        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ);
 
         //Generate heightMap
         Texture2D tileTexture = BuildTexture(heightMap);
         this.tileRenderer.material.mainTexture = tileTexture;
 
+        // Update the tile mesh vertices
         UpdateMeshVertices(heightMap);
     }
 
@@ -66,7 +79,7 @@ public class TileGeneration : MonoBehaviour
                 Vector3 vertex = meshVertices[vertexIndex];
 
                 // Depending on the height value, change the vertex Y coordinate
-                meshVertices[vertexIndex] = new Vector3(vertex.x, height * this.heightMultiplier, vertex.z);
+                meshVertices[vertexIndex] = new Vector3(vertex.x, this.heightCurve.Evaluate(height) * this.heightMultiplier, vertex.z);
 
                 vertexIndex++;
             }

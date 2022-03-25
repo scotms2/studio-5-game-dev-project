@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class NoiseMapGeneration : MonoBehaviour
 {
-    public float[,] GenerateNoiseMap(int mapDepth, int mapWidth, float scale)
+    public float[,] GenerateNoiseMap(int mapDepth, int mapWidth, float scale, float offsetX, float offsetZ)
     {
         float[,] noiseMap = new float[mapDepth, mapWidth]; //Create empty noise map with depth and width
 
@@ -19,8 +19,8 @@ public class NoiseMapGeneration : MonoBehaviour
             for (int x = 0; x < mapWidth; x++)
             {
                 //Calculate sample indices based on the coordinates and the scale
-                float sampleX = x / scale;
-                float smapleZ = z / scale;
+                float sampleX = (x + offsetX) / scale;
+                float smapleZ = (z + offsetZ) / scale;
 
                 //Generate noise value
                 float noise = Mathf.PerlinNoise(sampleX, smapleZ);
