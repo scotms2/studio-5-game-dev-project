@@ -7,6 +7,8 @@ public class animationStateController : MonoBehaviour
     Animator animator;
     public GameObject player;
     int MinDist = 5;
+    Collision2D collision;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,12 +28,12 @@ public class animationStateController : MonoBehaviour
 
         if (Vector3.Distance(transform.position, player.transform.position) >= MinDist)
         {
-            animator.SetBool("isPunch", false);
+            punch(false);
             animator.SetBool("isWalking", true);
         }
         else
         {
-            animator.SetBool("isPunch", true);
+            punch(true);
         }
 
     }
@@ -41,5 +43,14 @@ public class animationStateController : MonoBehaviour
         animator.SetBool("isDeath", true);
         Destroy(gameObject);
     }
+
+    void punch(bool pun)
+    {
+        animator.SetBool("isPunch", pun);
+
+        
+    }
+
+
 
 }
