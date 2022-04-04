@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class attack : MonoBehaviour
 {
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = transform.root.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -20,7 +22,12 @@ public class attack : MonoBehaviour
     {
         if (other.gameObject.tag == "playerTrigger")
         {
-            Debug.Log("hit player");
+            
+            //animationStateController temp = GetComponent(typeof(animationStateController)) as animationStateController;
+            if(animator.GetBool("isPunch"))
+            {
+                Debug.Log("hit player");
+            }
         }
             
     }
