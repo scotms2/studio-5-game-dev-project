@@ -11,13 +11,16 @@ using UnityEngine;
 [System.Serializable]
 public class TerrainType {
     public string name;
-    public float height;
+    public float threshold;
     public Color color;
+    public int index;
 }
 
 public class TileGeneration : MonoBehaviour
 {
     [SerializeField] private TerrainType[] terrainTypes;
+
+    [SerializeField] private TerrainType[] heightTerrainTypes;
 
     [SerializeField] private NoiseMapGeneration noiseMapGeneration;
 
@@ -31,9 +34,10 @@ public class TileGeneration : MonoBehaviour
 
     [SerializeField] private AnimationCurve heightCurve;
 
-    [SerializeField] private float mapScale;
+    [SerializeField] private float levelScale;
 
     [SerializeField] private Wave[] waves;
+    [SerializeField] private GameObject treePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +45,7 @@ public class TileGeneration : MonoBehaviour
         GenerateTile();
     }
 
-    void GenerateTile()
+    public void GenerateTile()
     {
         //Calculate width and depth of tile based on vertices of the mesh
         Vector3[] meshVertices = this.meshFilter.mesh.vertices;
@@ -53,14 +57,21 @@ public class TileGeneration : MonoBehaviour
         float offsetZ = -this.gameObject.transform.position.z;
 
         //Calculate offset based on tile position
-        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ, waves);
+        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.levelScale, offsetX, offsetZ, waves);
 
         //Generate heightMap
-        Texture2D tileTexture = BuildTexture(heightMap);
-        this.tileRenderer.material.mainTexture = tileTexture;
+        TerrainType[,] chosenHeightTerrainTypes = new TerrainType[tileDepth, tileWidth];
+        Texture2D heightTexture = BuildTexture(heightMap, this.heightTerrainTypes, chosenHeightTerrainTypes);
+        this.tileRenderer.material.mainTexture = heightTexture;
 
         // Update the tile mesh vertices
         UpdateMeshVertices(heightMap);
+
+        float rand = Random.Range(0.0f, 1.0f);
+        if(rand <= 0.3)
+        {
+            BuildTrees(heightMap);
+        }
     }
 
     private void UpdateMeshVertices(float[,] heightMap)
@@ -95,7 +106,7 @@ public class TileGeneration : MonoBehaviour
 
     }
 
-    private Texture2D BuildTexture(float[,] heightMap)
+    private Texture2D BuildTexture(float[,] heightMap, TerrainType[] terrainTypes, TerrainType[,] chosenTerrainTypes)
     {
         int tileDepth = heightMap.GetLength(0);
         int tileWidth = heightMap.GetLength(1);
@@ -110,6 +121,8 @@ public class TileGeneration : MonoBehaviour
                 float height = heightMap[z, x];
                 TerrainType terrainType = ChooseTerrainType(height);
                 colorMap[colorIndex] = terrainType.color;
+
+                chosenTerrainTypes[z, x] = terrainType;
             }
         }
 
@@ -121,17 +134,35 @@ public class TileGeneration : MonoBehaviour
         return tileTexture;
     }
 
-    TerrainType ChooseTerrainType(float height)
+    TerrainType ChooseTerrainType(float noise)
     {
         //Foreach terrain type check if the height is lower than the terrainType height
         foreach (TerrainType terrainType in terrainTypes)
         {
-            if(height < terrainType.height)
+            if(noise < terrainType.threshold)
             {
                 return terrainType;
             }
         }
 
         return terrainTypes[terrainTypes.Length - 1];
+    }
+
+    public void BuildTrees(float[,] heightMap)
+    {
+        int tileDepth = heightMap.GetLength(0);
+        int tileWidth = heightMap.GetLength(1);
+
+        for (int z = 0; z < tileDepth; z++)
+        {
+            for (int x = 0; x < tileWidth; x++)
+            {
+                float height = heightMap[z, x];
+                if(height <= 0.7)
+                {
+                    GameObject tree = Instantiate(treePrefab, this.transform.position, Quaternion.identity);
+                }
+            }
+        }
     }
 }
