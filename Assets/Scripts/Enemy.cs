@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,7 +11,14 @@ public class Enemy : MonoBehaviour
 
     public GameObject player;
 
-    int MinDist = 5;
+    //private NavMeshAgent navMeshAgent;
+
+    int MinDist = 1;
+
+    // void Awake()
+    // {
+    //     navMeshAgent = GetComponent<NavMeshAgent>();
+    // }
 
     void Start()
     {
@@ -27,6 +35,7 @@ public class Enemy : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) >= MinDist)
         {
             transform.position += transform.forward * runSpeed * Time.deltaTime;
+            //navMeshAgent.destination = player.transform.position;
         }
     }
 
