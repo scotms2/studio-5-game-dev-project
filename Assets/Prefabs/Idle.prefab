@@ -1953,7 +1953,7 @@ GameObject:
   - component: {fileID: 7252874434394084284}
   - component: {fileID: 3139428311100746479}
   m_Layer: 0
-  m_Name: HeavyEnemy
+  m_Name: Idle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
