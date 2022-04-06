@@ -28,6 +28,7 @@ public class Spawner : MonoBehaviour
 
         enemyList.Add(enemy);
 
+        //enemy.GetComponent<EnemyNavMesh>().SetSpawner(this);
         enemy.GetComponent<EnemyNavMesh>().SetSpawner(this);
     }
 

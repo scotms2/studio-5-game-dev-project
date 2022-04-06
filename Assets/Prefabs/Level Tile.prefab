@@ -178,5 +178,4 @@ MonoBehaviour:
   - seed: 6712
     frequency: 0.85
     amplitude: 4
-  treePrefab: {fileID: 1441834043809318084, guid: c20e50fd57e0a3c4bba6a55b79f21889, type: 3}
-  parent: {fileID: 0}
+  treePrefab: {fileID: 333835386521981011, guid: c20e50fd57e0a3c4bba6a55b79f21889, type: 3}

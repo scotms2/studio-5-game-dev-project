@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /*
     *Link to guide that helped me through this: https://gamedevacademy.org/complete-guide-to-procedural-level-generation-in-unity-part-1/
@@ -13,12 +14,16 @@ public class LevelGeneration : MonoBehaviour
 
     [SerializeField] private Transform parent;
 
-    [SerializeField] private GameObject treePrefab;
+    public NavMeshSurface surface;
 
     // Start is called before the first frame update
     void Start()
     {
         GenerateMap();
+
+        //Update NavMesh
+        surface.BuildNavMesh();
+
     }
 
     void GenerateMap()
@@ -47,7 +52,6 @@ public class LevelGeneration : MonoBehaviour
                 GameObject tile = Instantiate(tilePrefab, tilePos, Quaternion.identity);
 
                 tile.transform.SetParent(parent);
-                
 
             }
         }
