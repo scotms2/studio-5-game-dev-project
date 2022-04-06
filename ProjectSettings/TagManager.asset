@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hand
   - playerTrigger
+  - enemyBody
   layers:
   - Default
   - TransparentFX

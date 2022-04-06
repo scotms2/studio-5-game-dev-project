@@ -38,11 +38,10 @@ public class animationStateController : MonoBehaviour
 
     }
 
-    void OnMouseDown()
-    {
-        animator.SetBool("isDeath", true);
-        Destroy(gameObject);
-    }
+    //void OnMouseDown()
+    //{
+        //animator.SetBool("isDeath", true);
+    //}
 
     void punch(bool pun)
     {
