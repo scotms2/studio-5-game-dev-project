@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /*
     *Link to guide that helped me through this: https://gamedevacademy.org/complete-guide-to-procedural-level-generation-in-unity-part-1/
@@ -39,6 +40,8 @@ public class TileGeneration : MonoBehaviour
     [SerializeField] private Wave[] waves;
     [SerializeField] private GameObject treePrefab;
 
+    [SerializeField] private GameObject rockPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +75,12 @@ public class TileGeneration : MonoBehaviour
         {
             BuildTrees(heightMap);
         }
+
+        if(rand >= 0.8)
+        {
+            PlaceRocks(heightMap);
+        }
+
     }
 
     private void UpdateMeshVertices(float[,] heightMap)
@@ -92,7 +101,6 @@ public class TileGeneration : MonoBehaviour
 
                 // Depending on the height value, change the vertex Y coordinate
                 meshVertices[vertexIndex] = new Vector3(vertex.x, this.heightCurve.Evaluate(height) * this.heightMultiplier, vertex.z);
-
                 vertexIndex++;
             }
         }
@@ -161,6 +169,28 @@ public class TileGeneration : MonoBehaviour
                 if(height <= 0.7)
                 {
                     GameObject tree = Instantiate(treePrefab, this.transform.position, Quaternion.identity);
+                    GameObject parent = GameObject.FindWithTag("Level");
+                    tree.transform.SetParent(parent.transform);
+                }
+            }
+        }
+    }
+
+    public void PlaceRocks(float[,] heightMap)
+    {
+        int tileDepth = heightMap.GetLength(0);
+        int tileWidth = heightMap.GetLength(1);
+
+        for (int z = 0; z < tileDepth; z++)
+        {
+            for (int x = 0; x < tileWidth; x++)
+            {
+                float height = heightMap[z, x];
+                if(height <= 0.8)
+                {
+                    GameObject rock = Instantiate(rockPrefab, new Vector3(this.transform.position.x, 0.5f, this.transform.position.z), Quaternion.identity);
+                    GameObject parent = GameObject.FindWithTag("Level");
+                    rock.transform.SetParent(parent.transform);
                 }
             }
         }

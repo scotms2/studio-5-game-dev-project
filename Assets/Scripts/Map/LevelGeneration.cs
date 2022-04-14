@@ -23,7 +23,6 @@ public class LevelGeneration : MonoBehaviour
 
         //Update NavMesh
         surface.BuildNavMesh();
-
     }
 
     void GenerateMap()
