@@ -8,6 +8,11 @@ TagManager:
   - Hand
   - playerTrigger
   - enemyBody
+  - Enemy
+  - Ground Tile
+  - Rock
+  - Tree
+  - Hips(Feet)
   layers:
   - Default
   - TransparentFX

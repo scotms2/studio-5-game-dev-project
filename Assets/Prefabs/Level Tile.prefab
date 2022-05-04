@@ -180,4 +180,3 @@ MonoBehaviour:
     amplitude: 4
   treePrefab: {fileID: 333835386521981011, guid: c20e50fd57e0a3c4bba6a55b79f21889, type: 3}
   rockPrefab: {fileID: 2706248024422145534, guid: f923aff1d4ad78544b96e74649d3abab, type: 3}
-  parent: {fileID: 4254460722438308276, guid: d8babd5c7849c384e81cf53b55f51ec9, type: 3}
