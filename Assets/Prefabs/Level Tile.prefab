@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9aa77191c17072c48a594501f2efb01b, type: 2}
+  - {fileID: 2100000, guid: 403a80c3dfaf1174d8e77f22a35345ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -178,6 +178,5 @@ MonoBehaviour:
   - seed: 5112
     frequency: 0.1
     amplitude: 4
-  treePrefab: {fileID: 6041631938488883191, guid: c20e50fd57e0a3c4bba6a55b79f21889, type: 3}
+  treePrefab: {fileID: 5275410788730099876, guid: a44b7cc8e3d18af469e3aa7bd2c5c803, type: 3}
   rockPrefab: {fileID: 2706248024422145534, guid: f923aff1d4ad78544b96e74649d3abab, type: 3}
-  housePrefab: {fileID: 6769558914052836705, guid: 6d0f4521182d5144d815d72b31c35014, type: 3}

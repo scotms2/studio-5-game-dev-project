@@ -61,7 +61,7 @@ public class LevelGeneration : MonoBehaviour
 
     public void PlaceSpawn()
     {
-        GameObject house = Instantiate(housePrefab, new Vector3(55.0f, 3.0f, 55.0f), Quaternion.identity);
+        GameObject house = Instantiate(housePrefab, new Vector3(55.0f, 2.6f, 55.0f), Quaternion.identity);
         house.transform.SetParent(parent);
     }
 }
