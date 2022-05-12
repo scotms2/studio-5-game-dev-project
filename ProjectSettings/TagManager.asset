@@ -13,6 +13,7 @@ TagManager:
   - Rock
   - Tree
   - Hips(Feet)
+  - House
   layers:
   - Default
   - TransparentFX

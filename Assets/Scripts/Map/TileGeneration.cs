@@ -42,6 +42,8 @@ public class TileGeneration : MonoBehaviour
 
     [SerializeField] private GameObject rockPrefab;
 
+    //[SerializeField] private GameObject housePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +82,8 @@ public class TileGeneration : MonoBehaviour
         {
             PlaceRocks(heightMap);
         }
+
+        //PlaceSpawn(heightMap);
 
     }
 

@@ -14,6 +14,8 @@ public class Spawner : MonoBehaviour
 
     private List<GameObject> enemyList = new List<GameObject>();
 
+    [SerializeField] private Transform parent;
+
     void Start()
     {
         StartCoroutine(SpawnRoutine());
@@ -27,6 +29,7 @@ public class Spawner : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, randomPosition, enemyPrefab.transform.rotation);
 
         enemyList.Add(enemy);
+        enemy.transform.SetParent(parent);
 
         enemy.GetComponent<EnemyNavMesh>().SetSpawner(this);
     }
