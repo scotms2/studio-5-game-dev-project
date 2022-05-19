@@ -4,6 +4,8 @@ namespace Invector.vCharacterController
 {
     public class vThirdPersonController : vThirdPersonAnimator
     {
+
+        public SpawnProjectiles spawnProjectiles;
         public virtual void ControlAnimatorRootMotion()
         {
             if (!this.enabled) return;
@@ -123,6 +125,13 @@ namespace Invector.vCharacterController
                 animator.CrossFadeInFixedTime("Jump", 0.1f);
             else
                 animator.CrossFadeInFixedTime("JumpMove", .2f);
+        }
+
+        public virtual void Punch(bool val)
+        {
+            animator.SetBool("IsFire", val);
+            Debug.Log("Fire the punch " + val);
+            spawnProjectiles.Fire(val);
         }
     }
 }

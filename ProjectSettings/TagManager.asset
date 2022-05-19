@@ -8,6 +8,7 @@ TagManager:
   - Hand
   - playerTrigger
   - enemyBody
+  - Fire
   layers:
   - Default
   - TransparentFX

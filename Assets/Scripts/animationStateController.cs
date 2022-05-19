@@ -46,7 +46,7 @@ public class animationStateController : MonoBehaviour
     void punch(bool pun)
     {
         animator.SetBool("isPunch", pun);
-
+        
         
     }
 
