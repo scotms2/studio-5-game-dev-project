@@ -42,6 +42,10 @@ public class TileGeneration : MonoBehaviour
 
     [SerializeField] private GameObject rockPrefab;
 
+    [SerializeField] private GameObject grassPrefab;
+
+    //[SerializeField] private GameObject housePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +84,9 @@ public class TileGeneration : MonoBehaviour
         {
             PlaceRocks(heightMap);
         }
+
+        //PlaceSpawn(heightMap);
+        PlaceGrass(heightMap);
 
     }
 
@@ -191,6 +198,26 @@ public class TileGeneration : MonoBehaviour
                     GameObject rock = Instantiate(rockPrefab, new Vector3(this.transform.position.x, 0.5f, this.transform.position.z), Quaternion.identity);
                     GameObject parent = GameObject.FindWithTag("Level");
                     rock.transform.SetParent(parent.transform);
+                }
+            }
+        }
+    }
+
+    public void PlaceGrass(float[,] heightMap)
+    {
+        int tileDepth = heightMap.GetLength(0);
+        int tileWidth = heightMap.GetLength(1);
+
+        for (int z = 0; z < tileDepth; z++)
+        {
+            for (int x = 0; x < tileWidth; x++)
+            {
+                float height = heightMap[z, x];
+                if(height <= 0.8)
+                {
+                    GameObject grass = Instantiate(grassPrefab, new Vector3(this.transform.position.x, 0.1f, this.transform.position.z), Quaternion.identity);
+                    GameObject parent = GameObject.FindWithTag("Level");
+                    grass.transform.SetParent(parent.transform);
                 }
             }
         }

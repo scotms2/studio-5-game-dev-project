@@ -16,10 +16,13 @@ public class LevelGeneration : MonoBehaviour
 
     public NavMeshSurface surface;
 
+    [SerializeField] private GameObject housePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
         GenerateMap();
+        PlaceSpawn();
 
         //Update NavMesh
         surface.BuildNavMesh();
@@ -54,5 +57,11 @@ public class LevelGeneration : MonoBehaviour
 
             }
         }
+    }
+
+    public void PlaceSpawn()
+    {
+        GameObject house = Instantiate(housePrefab, new Vector3(55.0f, 2.6f, 55.0f), Quaternion.identity);
+        house.transform.SetParent(parent);
     }
 }
