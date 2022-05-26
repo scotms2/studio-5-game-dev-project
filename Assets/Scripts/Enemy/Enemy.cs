@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     private HealthSystem healthSystem = new HealthSystem(100);
 
-    public GameObject txtPrefab;
+    //public GameObject txtPrefab;
 
     void Start()
     {

@@ -180,4 +180,4 @@ MonoBehaviour:
     amplitude: 4
   treePrefab: {fileID: 5275410788730099876, guid: a44b7cc8e3d18af469e3aa7bd2c5c803, type: 3}
   rockPrefab: {fileID: 2706248024422145534, guid: f923aff1d4ad78544b96e74649d3abab, type: 3}
-  grassPrefab: {fileID: 6062213404276190347, guid: 4d302e5baa5874b4abf3ee603e3a44b1, type: 3}
+  grassPrefab: {fileID: 6384499084885141809, guid: cd0acf7190e9aa24e884cdd5616d07e7, type: 3}
