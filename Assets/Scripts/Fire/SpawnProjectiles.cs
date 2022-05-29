@@ -33,6 +33,10 @@ namespace Invector.vCharacterController
                 StartCoroutine(FireRoutine());
                 cc.Punch(true);
             }
+            else
+            {
+                cc.Punch(false);
+            }
 
         }
 

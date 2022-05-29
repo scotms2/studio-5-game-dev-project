@@ -16,5 +16,19 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(healthSystem.GetHealth() <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        Debug.Log("trig");
+        if (collider.gameObject.tag == "Fire")
+        {
+            Debug.Log("Fire Hit");
+            healthSystem.Damage(100);
+        }
     }
 }
