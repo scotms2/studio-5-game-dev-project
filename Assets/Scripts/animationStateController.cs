@@ -17,7 +17,6 @@ public class animationStateController : MonoBehaviour
         animator.SetBool("isWalking", false);
         animator.SetBool("isPunch", false);
         animator.SetBool("isDeath", false);
-
     }
 
     // Update is called once per frame
@@ -35,21 +34,10 @@ public class animationStateController : MonoBehaviour
         {
             punch(true);
         }
-
     }
-
-    //void OnMouseDown()
-    //{
-        //animator.SetBool("isDeath", true);
-    //}
 
     void punch(bool pun)
     {
         animator.SetBool("isPunch", pun);
-        
-        
     }
-
-
-
 }

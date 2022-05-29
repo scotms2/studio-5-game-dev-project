@@ -56,7 +56,6 @@ namespace Invector.vCharacterController
             if (val == true)
             {
                 SpawnVFX();
-                Debug.Log("aaaaaaaaaa");
             }
         }
 

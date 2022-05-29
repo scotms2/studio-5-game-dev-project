@@ -5,20 +5,28 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    Animator animator;
     private HealthSystem healthSystem = new HealthSystem(100);
 
     public GameObject txtPrefab;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(healthSystem.GetHealth() <= 0)
+        if (healthSystem.GetHealth() <= 0)
         {
-            Destroy(gameObject);
+            Debug.Log("oooooooo");
+            animator.SetBool("isDeath", true);
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("DeathAni"))
+            {
+                Destroy(gameObject);
+            }
+            
         }
     }
 

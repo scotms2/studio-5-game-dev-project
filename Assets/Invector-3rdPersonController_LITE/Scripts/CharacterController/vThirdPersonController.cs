@@ -130,7 +130,6 @@ namespace Invector.vCharacterController
         public virtual void Punch(bool val)
         {
             animator.SetBool("IsFire", val);
-            Debug.Log("Fire the punch " + val);
             spawnProjectiles.Fire(val);
         }
     }
