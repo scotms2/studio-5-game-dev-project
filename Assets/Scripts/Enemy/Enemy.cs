@@ -20,9 +20,8 @@ public class Enemy : MonoBehaviour
     {
         if (healthSystem.GetHealth() <= 0)
         {
-            Debug.Log("oooooooo");
             animator.SetBool("isDeath", true);
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("DeathAni"))
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("dead"))
             {
                 Destroy(gameObject);
             }
