@@ -9,6 +9,11 @@ TagManager:
   - playerTrigger
   - enemyBody
   - Fire
+  - Enemy
+  - Hips(Feet)
+  - Rock
+  - House
+  - Grass
   layers:
   - Default
   - TransparentFX
