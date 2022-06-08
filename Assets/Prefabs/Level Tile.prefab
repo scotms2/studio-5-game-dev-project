@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2155894110615383518
 Transform:
@@ -180,4 +180,4 @@ MonoBehaviour:
     amplitude: 4
   treePrefab: {fileID: 5275410788730099876, guid: a44b7cc8e3d18af469e3aa7bd2c5c803, type: 3}
   rockPrefab: {fileID: 2706248024422145534, guid: f923aff1d4ad78544b96e74649d3abab, type: 3}
-  grassPrefab: {fileID: 6384499084885141809, guid: cd0acf7190e9aa24e884cdd5616d07e7, type: 3}
+  grassPrefab: {fileID: 2637629556610506472, guid: cd0acf7190e9aa24e884cdd5616d07e7, type: 3}

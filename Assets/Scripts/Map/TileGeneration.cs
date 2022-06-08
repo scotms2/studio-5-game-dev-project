@@ -44,8 +44,6 @@ public class TileGeneration : MonoBehaviour
 
     [SerializeField] private GameObject grassPrefab;
 
-    //[SerializeField] private GameObject housePrefab;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -75,12 +73,12 @@ public class TileGeneration : MonoBehaviour
         UpdateMeshVertices(heightMap);
 
         float rand = Random.Range(0.0f, 1.0f);
-        if(rand <= 0.3)
+        if(rand <= 0.2)
         {
             BuildTrees(heightMap);
         }
 
-        if(rand >= 0.8)
+        if(rand >= 0.9)
         {
             PlaceRocks(heightMap);
         }
